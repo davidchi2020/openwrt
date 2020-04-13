@@ -29,11 +29,14 @@ jobs:
           sudo -E apt-get clean
       - name: Update feeds
         run: |
+          ./scripts/feeds update -f mtk
+          ./scripts/feeds install -a -p mtk
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-      - name: Make ./chi.config
+      - name: Make config
         run: |
-          make ./chi.config
+          sed -i 's/^[ \t]*//g' ./.config
+          make defconfig
       - name: Make download
         run: |
           make download -j8
