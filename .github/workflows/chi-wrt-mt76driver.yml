@@ -33,7 +33,7 @@ jobs:
           ./scripts/feeds install -a
       - name: Make ./chi.config
         run: |
-          make defconfig
+          make ./chi.config
       - name: Make download
         run: |
           make download -j8
